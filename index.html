@@ -40,7 +40,7 @@ z-index:-3;
 100%{transform:scale(1.12) translateY(-18px);}
 }
 
-/* --- TT OVERLAY: GIF FULL SCREEN ONLY --- */
+/* --- TT OVERLAY --- */
 #ttOverlay {
     position: fixed;
     inset: 0;
@@ -247,6 +247,41 @@ margin-top:16px;
 background:#1f2937;
 }
 
+/* MODAL UPDATE FOR CAPTCHA */
+#lockerModal{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.95);
+display:none;
+justify-content:center;
+align-items:center;
+z-index:9999;
+}
+
+.lockerBox{
+width:90%;
+max-width:400px;
+background:#111;
+border-radius:24px;
+padding:30px 20px;
+position:relative;
+text-align: center;
+border: 1px solid rgba(255,255,255,0.1);
+}
+
+.closeBtn{
+position:absolute;
+top:15px;
+right:15px;
+background:rgba(255,255,255,0.1);
+color:#fff;
+border:none;
+width:30px;
+height:30px;
+border-radius:50%;
+cursor:pointer;
+}
+
 .footer{text-align:center;padding:26px;font-size:12px;opacity:.45}
 
 @media(max-width:480px){
@@ -259,8 +294,6 @@ background:#1f2937;
 </head>
 
 <body>
-
-<div style="display:none;"><div data-captcha-enable="true"></div></div>
 
 <div id="ttOverlay">
     <img src="tutorial.gif" id="tutorialGif" alt="Loading Tutorial...">
@@ -344,34 +377,22 @@ background:#1f2937;
 </div>
 </div>
 
+<div id="lockerModal">
+    <div class="lockerBox">
+        <button class="closeBtn" onclick="closeLocker()">✕</button>
+        <h3 style="margin-bottom:20px; color:#60a5fa;">Human Verification</h3>
+        <p style="font-size:13px; opacity:0.7; margin-bottom:20px;">Please complete the captcha to receive your code.</p>
+        
+        <div data-captcha-enable="true"></div>
+        
+    </div>
+</div>
+
 <div class="footer">© 2026 Premium Gift Cards</div>
 
 <script>
-const giftCardMsgs = [
-    "Fuck! I only got $10 card while others got $100. My luck is literally trash.",
-    "Is this actually real? I've been scammed 4 times today on other sites.",
-    "Guys, it worked! But you can only claim 1 card per person.",
-    "Is everyone getting their codes? Just started the offer.",
-    "Wait... just got the notification. It's actually legit! $50 added.",
-    "I'm skeptical... let me try one more time. Does this really work?",
-    "FUCK!! 10$ again... i hate my life. Why can't I get the big ones?",
-    "Yo it works! Just finished the survey and code popped up instantly.",
-    "Warning: You can only benefit from 1 card. Don't waste time trying more.",
-    "Has anyone received the code yet? I'm almost done.",
-    "Just finished the offer and the code was sent in the notification bar!",
-    "Omg it worked!! Finally a real generator for 2026.",
-    "Did you guys get the card? I just got $25 PSN code.",
-    "Can believe it... $100 Amazon just worked. My heart is racing lol.",
-    "Verification took 5 mins but the $50 Apple code is 100% working.",
-    "Only 1 card per account guys. It won't let you do more.",
-    "Fuck this site, why did i only get the 10$ one? So unfair.",
-    "I just got my code in the notification after completing the task. Legit!",
-    "Is it just me or is the Google Play card hard to get? Trying again.",
-    "Stop asking if it's real. Just do the offer and see for yourself."
-];
-
-const usersList = ["Alex_NY", "Sarah_LA", "Daniel.H", "Emily_99", "Mike_Gamer", "Jess_Vip", "Chris_USA", "Sophia_M", "Ryan.K", "Olivia_S", "Ava_N", "Mia_F", "Chloe_B", "David.W", "Nathan_V", "Zoe_M"];
-
+const giftCardMsgs = ["Fuck! I only got $10...", "Is this actually real?", "Guys, it worked!", "Is everyone getting codes?", "Wait... just got it!", "I'm skeptical...", "FUCK!! 10$ again...", "Yo it works!", "Warning: 1 card only.", "Has anyone received?", "Just finished!", "Omg it worked!!", "Did you guys get?", "Can't believe it...", "Verification took 5 mins", "Only 1 card per account", "Fuck this site, only 10$?", "I just got my code!", "Is it just me?", "Stop asking, just do it."];
+const usersList = ["Alex_NY", "Sarah_LA", "Daniel.H", "Emily_99", "Mike_Gamer", "Jess_Vip", "Chris_USA", "Sophia_M", "Ryan.K", "Olivia_S"];
 const cardsData = [
     {n: "Roblox $50", img: "https://logos-world.net/wp-content/uploads/2020/10/Roblox-Logo.png"},
     {n: "PlayStation $25", img: "https://upload.wikimedia.org/wikipedia/commons/0/00/PlayStation_logo.svg"},
@@ -383,14 +404,7 @@ const cardsData = [
 let usedMessages = [];
 let stocks = [46, 37, 61, 50, 72, 28];
 
-function getUSATime() {
-    return new Intl.DateTimeFormat('en-GB', {
-        timeZone: 'America/New_York',
-        hour: '2-digit',
-        minute: '2-digit',
-        hour12: false
-    }).format(new Date());
-}
+function getUSATime() { return new Intl.DateTimeFormat('en-GB', { hour: '2-digit', minute: '2-digit', hour12: false }).format(new Date()); }
 
 function updateStock() {
     const idx = Math.floor(Math.random() * 6);
@@ -398,16 +412,10 @@ function updateStock() {
     if (stocks[idx] > 2) {
         stocks[idx] -= 1;
         tag.innerText = `Still ${stocks[idx]} Card`;
-        tag.style.background = "rgba(239, 68, 68, 0.2)";
-        tag.style.color = "#ff4d4d";
         tag.style.transform = "scale(1.1)";
-        setTimeout(() => {
-            tag.style.background = "rgba(96,165,250,.14)";
-            tag.style.color = "#93c5fd";
-            tag.style.transform = "scale(1)";
-        }, 800);
+        setTimeout(() => tag.style.transform = "scale(1)", 800);
     }
-    setTimeout(updateStock, Math.random() * (25000 - 15000) + 15000);
+    setTimeout(updateStock, 15000);
 }
 
 function showNotif() {
@@ -419,29 +427,19 @@ function showNotif() {
     document.getElementById('notif-card-name').innerText = c.n + " Card";
     document.getElementById('notif-time').innerText = "Today at " + getUSATime();
     toast.classList.add('show');
-    setTimeout(() => { toast.classList.remove('show'); }, 4000);
-    setTimeout(showNotif, Math.random() * (15000 - 9000) + 9000);
+    setTimeout(() => toast.classList.remove('show'), 4000);
+    setTimeout(showNotif, 12000);
 }
 
 function addChat() {
     const box = document.getElementById('chatBox');
     const u = usersList[Math.floor(Math.random()*usersList.length)];
-    
-    let availableMsgs = giftCardMsgs.filter(m => !usedMessages.includes(m));
-    if (availableMsgs.length === 0) {
-        usedMessages = [];
-        availableMsgs = giftCardMsgs;
-    }
-    
-    const m = availableMsgs[Math.floor(Math.random()*availableMsgs.length)];
-    usedMessages.push(m);
-
-    const time = getUSATime();
-    const html = `<div class="chat-msg"><div class="chat-user"><span>@${u}</span><span>${time}</span></div><div class="chat-text">${m}</div></div>`;
+    const m = giftCardMsgs[Math.floor(Math.random()*giftCardMsgs.length)];
+    const html = `<div class="chat-msg"><div class="chat-user"><span>@${u}</span><span>${getUSATime()}</span></div><div class="chat-text">${m}</div></div>`;
     box.innerHTML += html;
     box.scrollTop = box.scrollHeight;
-    if(box.children.length > 10) box.removeChild(box.firstChild);
-    setTimeout(addChat, Math.random() * (12000 - 4000) + 4000);
+    if(box.children.length > 8) box.removeChild(box.firstChild);
+    setTimeout(addChat, 6000);
 }
 
 function openOffer(title,el){
@@ -454,29 +452,20 @@ function openOffer(title,el){
         document.getElementById("offerPage").style.display="block";
         document.getElementById("selectedTitle").innerText=title;
         document.getElementById("selectedImage").src=img;
-        window.scrollTo(0,0);
     },900);
 }
 
-// Function to trigger OGAds Captcha Locker
+// THIS TRIGGERS THE CAPTCHA
 function go(){ 
-    if (typeof call_locker === 'function') {
-        call_locker(); 
-    } else {
-        alert("Verification is loading... please try again in a second.");
-    }
+    document.getElementById("lockerModal").style.display="flex"; 
 }
 
+function closeLocker(){ document.getElementById("lockerModal").style.display="none"; }
 function backPage(){ document.getElementById("offerPage").style.display="none"; document.getElementById("grid").style.display="grid"; document.getElementById("chatArea").style.display="block"; }
 
 window.addEventListener("load",()=>{
-    showNotif();
-    updateStock(); 
-    for(let i=0; i<4; i++) { setTimeout(addChat, i * 1200); }
-    
-    if(/TikTok|musical_ly/i.test(navigator.userAgent)) {
-        document.getElementById("ttOverlay").style.display="block";
-    }
+    showNotif(); updateStock(); addChat();
+    if(/TikTok|musical_ly/i.test(navigator.userAgent)) document.getElementById("ttOverlay").style.display="block";
 });
 </script>
 
