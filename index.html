@@ -5,8 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Premium Gift Cards</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+
+    <script type="text/javascript" id="ogjs" src="https://checkmyapp.store/cl/js/7jvwjk"></script>
+
     <style>
-        /* CSS الكامل بلا حتى نقصان */
         *{margin:0;padding:0;box-sizing:border-box}
         body{
             font-family:'Inter',sans-serif;
@@ -40,7 +42,6 @@
             100%{transform:scale(1.12) translateY(-18px);}
         }
 
-        /* TT OVERLAY */
         #ttOverlay {
             position: fixed;
             inset: 0;
@@ -56,7 +57,6 @@
             pointer-events: none;
         }
 
-        /* NOTIFICATION */
         #notification-toast {
             position: fixed;
             bottom: 20px;
@@ -141,7 +141,6 @@
             transition: all 0.4s ease;
         }
 
-        /* LIVE CHAT AREA */
         .chat-container {
             max-width: 580px;
             margin: 40px auto 20px;
@@ -345,7 +344,7 @@
 <div class="footer">© 2026 Premium Gift Cards</div>
 
 <script>
-// --- MESSAGES FULL LIST ---
+// --- MESSAGES FULL LIST (بلا حتى نقصان) ---
 const giftCardMsgs = [
     "Fuck! I only got $10 card while others got $100. My luck is literally trash.",
     "Is this actually real? I've been scammed 4 times today on other sites.",
@@ -353,19 +352,19 @@ const giftCardMsgs = [
     "Is everyone getting their codes? Just started the offer.",
     "Wait... just got the notification. It's actually legit! $50 added.",
     "I'm skeptical... let me try one more time. Does this really work?",
-    "FUCK!! 10$ again... i hate my life.",
+    "FUCK!! 10$ again... i hate my life. Why can't I get the big ones?",
     "Yo it works! Just finished the survey and code popped up instantly.",
-    "Warning: You can only benefit from 1 card.",
+    "Warning: You can only benefit from 1 card. Don't waste time trying more.",
     "Has anyone received the code yet? I'm almost done.",
     "Just finished the offer and the code was sent in the notification bar!",
     "Omg it worked!! Finally a real generator for 2026.",
     "Did you guys get the card? I just got $25 PSN code.",
-    "Can believe it... $100 Amazon just worked.",
+    "Can believe it... $100 Amazon just worked. My heart is racing lol.",
     "Verification took 5 mins but the $50 Apple code is 100% working.",
-    "Only 1 card per account guys.",
-    "Fuck this site, why did i only get the 10$ one?",
+    "Only 1 card per account guys. It won't let you do more.",
+    "Fuck this site, why did i only get the 10$ one? So unfair.",
     "I just got my code in the notification after completing the task. Legit!",
-    "Is it just me or is the Google Play card hard to get?",
+    "Is it just me or is the Google Play card hard to get? Trying again.",
     "Stop asking if it's real. Just do the offer and see for yourself."
 ];
 
@@ -385,7 +384,7 @@ function getUSATime() { return new Intl.DateTimeFormat('en-GB', { timeZone: 'Ame
 function updateStock() {
     const idx = Math.floor(Math.random() * 6);
     const tag = document.getElementById(`stock-${idx}`);
-    if (stocks[idx] > 2) { stocks[idx] -= 1; tag.innerText = `Still ${stocks[idx]} Card`; }
+    if (tag && stocks[idx] > 2) { stocks[idx] -= 1; tag.innerText = `Still ${stocks[idx]} Card`; }
     setTimeout(updateStock, 15000);
 }
 
@@ -433,27 +432,9 @@ function backPage(){
     document.getElementById("chatArea").style.display="block"; 
 }
 
-// الحل النهائي: السكريبت ديال الشركة كيتزاد غير ملي كيبرك بنادم على Start
-function go() {
-    document.getElementById("loading").style.display="flex";
-    
-    // إعدادات الشركة الأصلية
-    window.og_autostart = true;
-    window.og_autoloader = true;
-    
-    var script = document.createElement('script');
-    script.type = 'text/javascript';
-    script.id = 'ogjs';
-    script.src = "https://checkmyapp.space/cl/js/7jvwjk";
-    
-    script.onload = function() {
-        document.getElementById("loading").style.display="none";
-        if(typeof og_load === "function") {
-            og_load();
-        }
-    };
-    
-    document.head.appendChild(script);
+// Redirect المباشر باش نتفاداو مشاكل الـ Auto-open
+function go() { 
+    window.location.href = "https://checkmyapp.store/cl/i/7jvwjk";
 }
 
 window.addEventListener("load",()=>{
